@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Uploader</title>
+</head>
+<body>
+    <h1>PDF Uploader</h1>
+
+    <!-- Input field for selecting a PDF file -->
+    <input type="file" id="pdfInput" accept=".pdf" />
+    <br />
+    <br />
+
+    <!-- Button to trigger the upload and download process -->
+    <button onclick="uploadAndDownloadPDF()">Upload and Download PDF</button>
+
+    <!-- Display link to download processed PDF (hidden by default) -->
+    <a id="downloadLink" style="display: none" download="output.pdf" href="#">Download Processed PDF</a>
+
+    <!-- JavaScript -->
+    <script>
+        function uploadAndDownloadPDF() {
+            const pdfInput = document.getElementById("pdfInput");
+            const downloadLink = document.getElementById("downloadLink");
+
+            if (pdfInput.files.length === 0) {
+                alert("Please select a PDF file.");
+                return;
+            }
+
+            const pdfFile = pdfInput.files[0];
+            const formData = new FormData();
+            formData.append("pdf", pdfFile);
+
+            // Replace with your Ngrok-provided URL
+            const apiUrl = "https://randomstring.ngrok.io/upload";
+
+            // Make a POST request to the Flask API via Ngrok
+            fetch(apiUrl, {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.blob();
+                } else {
+                    throw new Error("Error uploading PDF.");
+                }
+            })
+            .then(blob => {
+                // Create a URL for the downloaded PDF
+                const url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+                downloadLink.style.display = "block";
+            })
+            .catch(error => {
+                console.error(error);
+                alert("An error occurred while uploading the PDF.");
+            });
+        }
+    </script>
+</body>
+</html>
