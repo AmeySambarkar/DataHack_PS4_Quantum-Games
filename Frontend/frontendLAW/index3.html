@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #000000;
+            padding: 20px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            color: aliceblue;
+        }
+
+        .stApp {
+            background-color: rgb(64, 64, 64);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(92, 92, 92, 0.1);
+        }
+
+        .stButton {
+            background-color: #907a00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .stFileUploader {
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .search-input {
+            width: 95%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .but {
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stApp">
+        <h1>Welcome to Legal Querying by Quantum Games!</h1>
+
+        <div class="stFileUploader">
+            <label for="pdf-upload">Upload a PDF document</label>
+            <input type="file" id="pdf-upload" accept=".pdf" style="display: none;">
+            <div id="uploaded-pdf"></div>
+        </div>
+
+        <!-- Input Label for Search Query -->
+        <div class="stFileUploader">
+            <label for="search-query">WRITE YOUR SEARCH QUERY...</label>
+            <input type="text" id="search-query" class="search-input" placeholder="Enter your query...">
+        </div>
+
+  
+        <div id="translation-results" style="display: none;">
+            <p>Translation results go here.</p>
+        </div>
+    </div>
+
+    <script>
+        const pdfUpload = document.getElementById("pdf-upload");
+        const uploadedPdf = document.getElementById("uploaded-pdf");
+
+        pdfUpload.addEventListener("change", function () {
+            const file = pdfUpload.files[0];
+            if (file) {
+                uploadedPdf.textContent = "Uploaded PDF: " + file.name;
+                translateButton.style.display = "block";
+            } else {
+                uploadedPdf.textContent = "";
+                translateButton.style  = "none";
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

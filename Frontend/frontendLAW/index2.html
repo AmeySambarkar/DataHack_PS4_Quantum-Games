@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #000000;
+            padding: 20px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            color: aliceblue;
+        }
+
+        .stApp {
+            background-color: rgb(64, 64, 64);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(92, 92, 92, 0.1);
+        }
+
+        .stButton {
+            background-color: #907a00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .stFileUploader {
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .but {
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stApp">
+        <h1>Welcome to Legal Translations and Querying by Quantum Games!</h1>
+
+        <div class="stFileUploader">
+            <label for="pdf-upload">Upload a PDF document</label>
+            <input type="file" id="pdf-upload" accept=".pdf" style="display: none;">
+            <div id="uploaded-pdf"></div>
+        </div>
+        <DIV class="but">
+            <button class="stButton" id="translate-button" style="display: none;">Translate</button>
+        </DIV>
+        <div id="translation-results" style="display: none;">
+            <p>Translation results go here.</p>
+        </div>
+    </div>
+
+    <script>
+        const pdfUpload = document.getElementById("pdf-upload");
+        const uploadedPdf = document.getElementById("uploaded-pdf");
+        const translateButton = document.getElementById("translate-button");
+        const translationResults = document.getElementById("translation-results");
+
+        pdfUpload.addEventListener("change", function () {
+            const file = pdfUpload.files[0];
+            if (file) {
+                uploadedPdf.textContent = "Uploaded PDF: " + file.name;
+                translateButton.style.display = "block";
+            } else {
+                uploadedPdf.textContent = "";
+                translateButton.style.display = "none";
+            }
+        });
+
+        translateButton.addEventListener("click", function () {
+            // Add translation logic here (if needed)
+            translationResults.textContent = "Translation results go here.";
+            translationResults.style.display = "block";
+        });
+    </script>
+</body>
+
+</html>

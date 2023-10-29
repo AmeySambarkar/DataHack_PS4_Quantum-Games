@@ -1,0 +1,83 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+    body {
+        font-family: "Arial", sans-serif;
+        background-color: #000000;
+        padding: 20px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        color: aliceblue;
+    }
+
+    .stApp {
+        background-color: rgb(64, 64, 64);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(92, 92, 92, 0.1);
+    }
+
+    .stButton {
+        background-color: #907a00;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .stFileUploader {
+        padding: 20px;
+        border: 2px dashed #ccc;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .search-input {
+        width: 95%;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    .but {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        margin: 20px;
+    }
+</style>
+</head>
+
+<body>
+    <div class="stApp">
+        <h1>Welcome to Legal Querying by Quantum Games!</h1>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="stFileUploader">
+            <label for="pdf-upload">Upload a PDF document</label>
+            <input type="file" name="pdf-upload" accept=".pdf">
+            <div id="uploaded-pdf"></div>
+            <input type="submit" class="stButton" value="Upload and Analyze">
+        </form>
+
+        <!-- Input Label for Search Query -->
+        <form action="/query" method="POST" class="stFileUploader">
+            <label for="search-query">WRITE YOUR SEARCH QUERY...</label>
+            <input type="text" name="search-query" class="search-input" placeholder="Enter your query...">
+            <input type="submit" class="stButton" value="Submit Query">
+        </form>
+
+        <div id="translation-results" style="display: none;">
+            <p>Translation results go here.</p>
+        </div>
+    </div>
+</body>
+
+</html>
